@@ -18,13 +18,13 @@ public class TaskMenu extends DriverScript {
 	
 	//************************************Page Elements*******************************************//
 	
-	@FindBy(id="container_tasks") WebElement btnTaskmenu;
-	@FindBy(xpath="//div[@class='title ellipsis'][contains(.,'Add New')]") WebElement btnAddNew;
-	@FindBy(xpath="//div[contains(@class,'item createNewCustomer')]") WebElement btnNewCust;
-	@FindBy(xpath="//input[contains(@class,'inputFieldWithPlaceholder newNameField inputNameField')]") WebElement tbCustName;
-    @FindBy(xpath="//textarea[contains(@placeholder,'Enter Customer Description')]") WebElement tbCustDes;
-	@FindBy(xpath="//div[@class='components_button_label'][contains(.,'Create Customer')]") WebElement btnCreateCust;
 	
+	@FindBy(xpath="//div[@class='title ellipsis'][contains(.,'Add New')]") WebElement buttonAddNew;
+	@FindBy(xpath="//div[contains(@class,'item createNewCustomer')]") WebElement dropdownNewCustomer;
+	@FindBy(xpath="//input[contains(@class,'inputFieldWithPlaceholder newNameField inputNameField')]") WebElement textboxCustomerName;
+    @FindBy(xpath="//textarea[contains(@placeholder,'Enter Customer Description')]") WebElement textareaCustomerDescription;
+	@FindBy(xpath="//div[@class='components_button_label'][contains(.,'Create Customer')]") WebElement buttonCreateCustomer;
+	@FindBy(xpath="//span[@class='innerHtml']") WebElement textSuccessMessage;
 	
  //*************************************Page Initialization************************************//
     
@@ -33,37 +33,40 @@ public class TaskMenu extends DriverScript {
     	PageFactory.initElements(driver, this);
     }
     
-    //*************************************Page Actions************************************// 
+    //*************************************Page Methods************************************// 
     
-    public void clickTaskmenu()
+    
+    
+    public void clickbuttonAddNew()
     {
-    	btnTaskmenu.click();
+    	buttonAddNew.click();
     }
     
-    public void clickaddNew()
+    public void clickdropdownNewCustomer()
     {
-    	btnAddNew.click();
+    	dropdownNewCustomer.click();
     }
     
-    public void clickNewCust()
+    public void textboxCustomerName(String customername)
     {
-    	btnNewCust.click();
+    	textboxCustomerName.sendKeys("customername");
     }
     
-    public void tbCustname()
-    {
-    	tbCustName.sendKeys("Monika");
-    }
-    
-    public void tbCustName()
-    {
-    	tbCustName.sendKeys("QA");
-    }
-    
-    public void btnCreateCust()
-    {
-    	btnCreateCust.click();
-    }
+    public void enterCustomerDescription(String customerdescription)
+	{
+		textareaCustomerDescription.sendKeys(customerdescription);
+	}
+	
+	public void clickCreateCustomerButton()
+	{
+		buttonCreateCustomer.click();
+	}
+	
+	public String validateSuccessMessage()
+	{
+		return textSuccessMessage.getText();
+	}
+
 }
 
 
